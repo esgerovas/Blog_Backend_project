@@ -13,13 +13,25 @@
 				$this->db_name = $name;
 				$this->db_con = mysqli_connect($this->host, $this->db_username, $this->db_password, $this->db_name);
 				if(!$this->db_con){
-					echo "you access your database";
+					echo "you can not access your database";
 				}
 			}
-			public function select($tname, $col='*', $id=NULL){
+			public function select($tname, $col='*', $id=NULL, $like=NULL,$order=NULL, $limit=NULL, $offset=NULL){
 				$sql = "SELECT $col from $tname";
 				if($id!=NULL){
 					$sql.=" WHERE id=$id ";
+				}
+				if($like!=NULL){
+					$sql.=" WHERE maintext LIKE '%$like%'";
+				}
+				if($order!=NULL){
+					$sql.=" ORDER BY $order";
+				}
+				if($limit!=NULL){
+					$sql.= "  LIMIT $limit";
+				}
+				if($offset!=NULL){
+					$sql.= "  OFFSET $offset";
 				}
 				$query = mysqli_query($this->db_con, $sql);
 				return $query;
