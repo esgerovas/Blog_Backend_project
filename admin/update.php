@@ -93,7 +93,7 @@ if(isset($_POST['updateMenu']) && $_SESSION['admin']){
 			    chmod($pic_dir, 0755); 
 
 			}
-			$newConnect->update('news', "maintext='$text', image='$pic_file', created_by='$auther'", $_SESSION['idNews']);
+			$newConnect->update('news', "maintext='$text', image='$pic_file',created_date=created_date, created_by='$auther'", $_SESSION['idNews']);
 			unset($_SESSION['idNews']);
 			header("Location:admin.php");
 		}

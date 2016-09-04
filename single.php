@@ -27,7 +27,7 @@
 						$clicked_count = $newConnect ->select('news','clicked_count',$id);
 						$clicked_row = mysqli_fetch_assoc($clicked_count);
 						$clicked = (int)$clicked_row['clicked_count']+1;
-						$newConnect ->update('news',"clicked_count=$clicked", $id);
+						$newConnect ->update('news',"created_date=created_date, clicked_count=$clicked", $id);
 
 					}else {
 						$query2 = $newConnect ->select('news','id',null,null,'created_date DESC');
